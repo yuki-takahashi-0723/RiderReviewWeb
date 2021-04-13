@@ -35,6 +35,7 @@ export const riderData = [
     topImageUrl: "test",
     favoriteTotallPoint: 95,
     favoriteNumberOfPeople: 10,
+    broadCastYear: 2020 + "年",
     synopsis: "若きID企業の社長が夢に向かって飛び立つ",
     subscriptSurvice: [
       { surviceTitle: "Netflix", surviceLink: "testNetflix" },
@@ -46,14 +47,14 @@ export const riderData = [
         reviewTitle: "意外と面白かった",
         reviewId: "FFFFF",
         reviewContent: "新時代を担う仮面ライダーとして活躍してくれた！",
-        timeStamp: { timeStamp },
+        timeStamp: timeStamp,
       },
       {
         reviewTitle: "子供には少し難しすぎのでは！？",
         reviewId: "EEEEEEEE",
         reviewContent:
           "子供と一緒に楽しませていただいておりましたが、途中で飽きてしまった模様です",
-        timeStamp: { timeStamp2 },
+        timeStamp: timeStamp2,
       },
     ],
   },
@@ -64,6 +65,7 @@ export const riderData = [
     topImageUrl: "test",
     favoriteTotallPoint: 87,
     favoriteNumberOfPeople: 17,
+    broadCastYear: 2017 + "年",
     synopsis: "天才物理学者が正義の味方に変身する！さあ、実験をはじめよう。",
     subscriptSurvice: [
       { surviceTitle: "Netflix", surviceLink: "testNetflix" },
@@ -77,14 +79,14 @@ export const riderData = [
         reviewId: "QQQQQQ",
         reviewContent:
           "戦争という重いテーマを真摯に扱い、かつポップで笑えるシーンも盛り込んだ名作",
-        timeStamp: { timeStamp },
+        timeStamp: timeStamp,
       },
       {
         reviewTitle: "グリスしか勝たん！",
         reviewId: "EEEEEEEE",
         reviewContent:
           "仮面ライダーグリスのカッコよさに惚れました！！まだ視聴途中ですが、最後までみたい！！",
-        timeStamp: { timeStamp2 },
+        timeStamp: timeStamp2,
       },
     ],
   },

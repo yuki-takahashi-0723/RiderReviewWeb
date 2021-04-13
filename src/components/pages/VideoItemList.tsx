@@ -1,6 +1,8 @@
 import React from "react";
+import { Redirect } from "react-router";
 import { riderData } from "../../Db";
 import { PrimaryButton } from "../../uikit";
+
 const VideoItemList: React.FC = () => {
   console.log(riderData);
   return (
@@ -13,7 +15,7 @@ const VideoItemList: React.FC = () => {
               key={rider.riderId}
               label={rider.title}
               variant={"text"}
-              onClick={() => console.log("!!!")}
+              onClick={() => console.log(rider.riderId)}
               submitType={false}
             />
           );
