@@ -3,7 +3,7 @@ import React from "react";
 
 interface PropsTypes {
   label: string;
-  variantOut: boolean;
+  variant: string;
   onClick?: () => void;
   submitType: boolean;
 }
@@ -11,12 +11,22 @@ interface PropsTypes {
 const PrimaryButton: React.FC<PropsTypes> = ({
   label,
   onClick,
-  variantOut,
+  variant,
   submitType,
 }) => {
+  const variantData = (variant: string) => {
+    if (variant === "text") {
+      return "text";
+    } else if (variant === "outlined") {
+      return "outlined";
+    } else if (variant === "contained") {
+      return "contained";
+    }
+  };
+
   return (
     <Button
-      variant={variantOut ? "outlined" : "contained"}
+      variant={variantData(variant)}
       color={"primary"}
       onClick={
         onClick

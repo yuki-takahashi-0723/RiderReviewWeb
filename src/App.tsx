@@ -25,9 +25,10 @@ import SideModal from "./uikit/SideModal";
 // };
 
 const App: React.FC = () => {
+  //uikitのTextINputAreaに関する記述サンプル
   // const [inputTest, setInputTest] = useState("");
   // console.log(inputTest);
-
+  //////react-hook-formで用いる関数例
   // const { handleSubmit, control } = useForm<Inputs>();
 
   // const handleCreate = (data: Inputs) => {
@@ -104,8 +105,7 @@ const App: React.FC = () => {
               />
               <PrimaryButton label="送信" variantOut={true} submitType={true} />
             </form> */}
-      <Heder />
-      　
+      <Heder />　
       <HashRouter>
         <Switch>
           <Route exact path="(/)?" component={TopPage} />

@@ -67,7 +67,7 @@ const SignUp: React.FC = () => {
           />
         </div>
         <div>
-          <PrimaryButton label="送信" variantOut={true} submitType={true} />
+          <PrimaryButton label="送信" variant={"contained"} submitType={true} />
         </div>
       </form>
     </div>
