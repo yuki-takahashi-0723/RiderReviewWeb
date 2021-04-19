@@ -7,23 +7,40 @@ import {
   ListItemText,
 } from "@material-ui/core";
 import MailIcon from "@material-ui/icons/Mail";
+import VpnKeyIcon from "@material-ui/icons/VpnKey";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 import StarsIcon from "@material-ui/icons/Stars";
 import RateReviewIcon from "@material-ui/icons/RateReview";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import React from "react";
-
-// const [open,setOpen] = useState(false)
-
+import { useDispatch, useSelector } from "react-redux";
+import {
+  ModalContorol,
+  selectUser,
+  SignOutAction,
+} from "../features/Slice/userDataSlice";
+import * as H from "history";
 interface PropsTypes {
   open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  history: H.History;
 }
 
-const SideModal: React.FC<PropsTypes> = ({ open, setOpen }) => {
-  const drawer = (
+const SideModal: React.FC<PropsTypes> = ({ open, history }) => {
+  const user = useSelector(selectUser);
+
+  const signInState = user.isSignIn;
+
+  const dispatch = useDispatch();
+  const signOut = () => {
+    console.log("サインアウト");
+    dispatch(SignOutAction());
+    history.push("/");
+  };
+  const drawer = signInState ? (
     <div>
+      <p>ユーザー名</p>
       <Divider />
       <List>
         {[
@@ -46,7 +63,11 @@ const SideModal: React.FC<PropsTypes> = ({ open, setOpen }) => {
       <Divider />
       <List>
         {["お問い合わせ", "サインアウト"].map((text, index) => (
-          <ListItem button key={text}>
+          <ListItem
+            button
+            key={text}
+            onClick={() => text === "サインアウト" && signOut()}
+          >
             <ListItemIcon>
               {index === 0 && <MailIcon />}
               {index === 1 && <ExitToAppIcon />}
@@ -56,13 +77,49 @@ const SideModal: React.FC<PropsTypes> = ({ open, setOpen }) => {
         ))}
       </List>
     </div>
+  ) : (
+    <div>
+      <Divider />
+      <List>
+        {["サインイン", "サインアップ"].map((text, index) => (
+          <ListItem
+            button
+            key={text}
+            onClick={() =>
+              (dispatch(ModalContorol()) &&
+                text === "サインイン" &&
+                history.push("/signin")) ||
+              (text === "サインアップ" && history.push("/signup"))
+            }
+          >
+            <ListItemIcon>
+              {index === 0 && <VpnKeyIcon />}
+              {index === 1 && <AccountCircleIcon />}
+            </ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        <ListItem button onClick={() => console.log("お問い合わせ")}>
+          <ListItemIcon>
+            <MailIcon />
+          </ListItemIcon>
+          <ListItemText primary={"お問い合わせ"} />
+        </ListItem>
+      </List>
+    </div>
   );
   return (
     <div>
-      <Drawer anchor="right" open={open} onClose={() => setOpen(false)}>
+      <Drawer
+        anchor="right"
+        open={open}
+        onClose={() => dispatch(ModalContorol())}
+      >
         <div>
           <h2>メニュー</h2>
-          <p>ユーザー名</p>
           {drawer}
         </div>
       </Drawer>

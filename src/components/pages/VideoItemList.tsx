@@ -1,12 +1,18 @@
 import React from "react";
-import { Redirect } from "react-router";
 import { riderData } from "../../Db";
 import { PrimaryButton } from "../../uikit";
+import Heder from "../Heder";
+import * as H from "history";
 
-const VideoItemList: React.FC = () => {
+interface PropsTypes {
+  history: H.History;
+}
+
+const VideoItemList: React.FC<PropsTypes> = ({ history }) => {
   console.log(riderData);
   return (
     <div>
+      <Heder history={history} />
       <h2>ライダー作品リスト</h2>
       <ul>
         {riderData.map((rider) => {

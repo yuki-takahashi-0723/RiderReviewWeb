@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { HashRouter, Switch, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import Heder from "./components/Heder";
@@ -11,8 +11,9 @@ import {
   VideoItemList,
   VideoReview,
 } from "./components/pages";
-import { PrimaryButton } from "./uikit";
-import SideModal from "./uikit/SideModal";
+
+// import { PrimaryButton } from "./uikit";
+// import SideModal from "./uikit/SideModal";
 
 // import { PrimaryButton, TextInputArea } from "./uikit";
 // import { Button, TextField } from "@material-ui/core";
@@ -105,7 +106,7 @@ const App: React.FC = () => {
               />
               <PrimaryButton label="送信" variantOut={true} submitType={true} />
             </form> */}
-      <Heder />　
+      　
       <HashRouter>
         <Switch>
           <Route exact path="(/)?" component={TopPage} />

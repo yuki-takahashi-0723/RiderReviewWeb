@@ -2,6 +2,10 @@ import React from "react";
 import { TextField } from "@material-ui/core";
 import { Controller, useForm } from "react-hook-form";
 import { PrimaryButton } from "../../uikit";
+import { useSelector, useDispatch } from "react-redux";
+import { AuthUser, selectUser } from "../../features/Slice/userDataSlice";
+import { auth } from "../../firebaseConfig";
+import * as H from "history";
 
 type Inputs = {
   inputName: string;
@@ -9,11 +13,34 @@ type Inputs = {
   inputPassWord: string;
 };
 
-const SignUp: React.FC = () => {
+interface PropsTypes {
+  history: H.History;
+}
+
+const SignUp: React.FC<PropsTypes> = ({ history }) => {
+  const user = useSelector(selectUser);
+  console.log(user);
+  const dispatch = useDispatch();
   const { handleSubmit, control } = useForm<Inputs>();
 
   const handleCreate = (data: Inputs) => {
-    console.log(data);
+    auth
+      .createUserWithEmailAndPassword(data.inputEmail, data.inputPassWord)
+      .then(({ user }) => {
+        if (user) {
+          user.updateProfile({
+            displayName: data.inputName,
+          });
+          dispatch(
+            AuthUser({
+              uid: user.uid,
+              name: data.inputName,
+              email: user.email,
+            })
+          );
+          history.push("/videoItemList");
+        }
+      });
   };
   return (
     <div>
